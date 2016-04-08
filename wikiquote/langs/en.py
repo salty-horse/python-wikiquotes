@@ -9,8 +9,8 @@ def is_quote(txt):
     invalid_conditions = [
         not txt or not txt[0].isupper() or len(txt) < MIN_QUOTE_LEN,
         len(txt_split) < MIN_QUOTE_WORDS,
-        any([True for word in txt_split if word in WORD_BLACKLIST]),
-        txt.endswith(('(', ':', ']')),
+        any(True for word in txt_split if word in WORD_BLACKLIST),
+        any(word.endswith((')', ':', ']')) for word in txt_split),
     ]
 
     # Returns false if any invalid conditions are true, otherwise returns True.
